@@ -1,0 +1,11 @@
+[package]
+name = "php_math_extension"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "rust_math"
+crate-type = ["staticlib"]
+
+# 这个项目不需要外部依赖，只使用 Rust 标准库
+# 所有的数学函数都在标准库中实现 
