@@ -24,6 +24,12 @@ libtool
 run-tests.php
 php_rust_math.dep
 
+# C 构建产物
+c_src/*.lo
+c_src/*.dep
+c_src/.libs/
+c_src/*.o
+
 # IDE 和编辑器文件
 .vscode/
 .idea/
