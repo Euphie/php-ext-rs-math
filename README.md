@@ -76,7 +76,7 @@ php_ext_test/
 
 5. **测试扩展**
    ```bash
-   ./test.sh
+   php -d extension=modules/rust_math.so example.php
    ```
 
 ### 方法二：本地开发

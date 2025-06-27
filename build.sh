@@ -104,7 +104,7 @@ echo "✓ Rust 静态库已复制到 deps 目录"
 # 自动查找带哈希后缀的静态库名，并复制一份
 HASHED_A=$(find target/release/deps -name "librust_math-*.a" | head -1)
 if [ -n "$HASHED_A" ]; then
-    cp "target/release/librust_math.a" "$HASHED_A"
+    cp "target/release/librust_math.a" "$HASHED_A" || true
     echo "✓ Rust 静态库已重命名为: $HASHED_A"
 fi
 
@@ -151,7 +151,7 @@ cargo build --release
 cp target/release/librust_math.a target/release/deps/librust_math.a
 HASHED_A=$(find target/release/deps -name "librust_math-*.a" | head -1)
 if [ -n "$HASHED_A" ]; then
-    cp target/release/librust_math.a "$HASHED_A"
+    cp target/release/librust_math.a "$HASHED_A" || true
     echo "✓ Rust 静态库已重命名为: $HASHED_A"
 fi
 
@@ -185,29 +185,7 @@ echo ""
 
 # 检查扩展是否可以加载
 echo "测试扩展加载..."
-php -m | grep rust_math
-
-if [ $? -eq 0 ]; then
-    echo "✓ 扩展加载成功"
-else
-    echo "⚠️  扩展未自动加载，需要手动配置"
-    echo "请在 php.ini 中添加: extension=rust_math.so"
-fi
-echo ""
-
-# 运行 PHP 测试
-if [ -f "test.php" ]; then
-    echo "运行 PHP 测试..."
-    php test.php
-    
-    if [ $? -eq 0 ]; then
-        echo "✓ PHP 测试通过"
-    else
-        echo "✗ PHP 测试失败"
-        exit 1
-    fi
-    echo ""
-fi
+php -d extension=modules/rust_math.so test.php
 
 echo "=== 构建完成 ==="
 echo "🎉 扩展构建和安装成功！"

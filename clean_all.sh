@@ -17,7 +17,7 @@ rm -f config.log config.status config.h config.h.in~ configure~ config.nice Make
 
 # 清理 autoconf/automake 产物
 echo "清理 autoconf/automake 产物..."
-rm -f config.h.in config.m4 configure config.nice config.status
+rm -f config.h.in configure config.nice config.status
 rm -rf include/
 
 # 清理临时和日志文件
